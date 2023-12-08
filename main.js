@@ -50,8 +50,8 @@ function renderCart() {
         return `
         <div>
             <h3>${product.name}</h3>
-            <p>${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})} each</p>
-            <p>Quantity: ${product.quantity}</p>
+            <p>${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})} styck</p>
+            <p>Antal: ${product.quantity}</p>
             <button class="decreaseQuantity" data-index="${product.id}">-</button>
             <button class="increaseQuantity" data-index="${product.id}">+</button>
             
