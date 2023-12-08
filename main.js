@@ -24,29 +24,71 @@ let mapResult = products.map(product => {
 })
 
 let dataDiv = document.getElementById("product-container").innerHTML = mapResult.join("");
-
 let addToWares = document.querySelectorAll('.addToWares');
 let cartContainer = document.getElementById('cart');
 
 addToWares.forEach(function(item, index) {
     item.addEventListener('click', function() {
-        cart.push(products[index]);
-        console.log(cart);
+        // Check if the product is already in the cart
+        const existingProductIndex = cart.findIndex(cartItem => cartItem.id === products[index].id);
+
+        if (existingProductIndex !== -1) {
+            // If the product is already in the cart, increase its quantity
+            cart[existingProductIndex].quantity += 1;
+        } else {
+            // If the product is not in the cart, add it with quantity 1
+            cart.push({ ...products[index], quantity: 1 });
+        }
 
         // Update cart rendering
-        let cartRender = cart.map(product => {
-            return `
-            <h3>${product.name}</h3>
-            <p>${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})}</p>
-            `;
-        });
-
-        cartContainer.innerHTML = cartRender.join('');
-
-        // Update total price in the cart container
-        let totalPrice = cart.reduce((total, currentProduct) => {
-            return total + currentProduct.price;
-        }, 0);
-        cartContainer.innerHTML += `<p>Total: ${totalPrice.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})}</p>`;
+        renderCart();
     });
 });
+
+function renderCart() {
+    let cartRender = cart.map(product => {
+        return `
+        <div>
+            <h3>${product.name}</h3>
+            <p>${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})} each</p>
+            <p>Quantity: ${product.quantity}</p>
+            <button class="decreaseQuantity" data-index="${product.id}">-</button>
+            <button class="increaseQuantity" data-index="${product.id}">+</button>
+            
+        </div> `;
+    });
+
+    cartContainer.innerHTML = cartRender.join('');
+
+    let totalPrice = cart.reduce((total, currentProduct) => {
+        return total + currentProduct.price * currentProduct.quantity;
+    }, 0);
+    cartContainer.innerHTML += `<p>Total: ${totalPrice.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})}</p>`;
+    let increaseButtons = document.querySelectorAll('.increaseQuantity');
+    let decreaseButtons = document.querySelectorAll('.decreaseQuantity');
+
+    increaseButtons.forEach(function(item) {
+        item.addEventListener('click', function() {
+            adjustQuantity(item.dataset.index, 1);
+        });
+    });
+
+    decreaseButtons.forEach(function(item) {
+        item.addEventListener('click', function() {
+            adjustQuantity(item.dataset.index, -1);
+        });
+    });
+}
+
+function adjustQuantity(productId, change) {
+    const productIndex = cart.findIndex(cartItem => cartItem.id == productId);
+
+    if (productIndex !== -1) {
+        cart[productIndex].quantity += change;
+
+    if(cart[productIndex].quantity === 0) {
+            cart.splice(productIndex, 1);
+    }
+    renderCart();
+    }
+}
