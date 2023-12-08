@@ -13,6 +13,7 @@ const products = [
     { id: 4, name: 'Mobiltelefon', category: 'elektronik', price: 500 }
 ];
 
+
 const cart = [];
 
 let mapResult = products.map(product => {
@@ -92,3 +93,4 @@ function adjustQuantity(productId, change) {
     renderCart();
     }
 }
+
