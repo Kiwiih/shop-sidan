@@ -9,18 +9,22 @@
 
 <body>
   <h1>Välkommen till vår Webbshop!</h1>
-  <label for="kategorier">välj en kategorier:</label>
 
-  
-	  
 	<h2>Våra produkter</h2>
-  <select name="produkt" id="product">
+  <select name="product" id="product">
     <option value="t-shirt">kläder</option>
-    <option value="hörlurar">Elektronik</option>
+    <option value="hörlurar">elektronik</option>
     <option value="keps">kläder</option>
-    <option value="mobiltelefon">Elektronik</option>
+    <option value="mobiltelefon">elektronik</option>
   </select>
-  <p id="selectedValue">Valt alternativ: </p>
+
+  <!-- Elementet där produktinformationen kommer att visas -->
+  <div id="productInfo">
+    <h3>Produktinformation</h3>
+    <p id="productName">Namn: </p>
+    <p id="productCategory">Kategori: </p>
+    <p id="productPrice">Pris: </p>
+  </div>
 	<!-- Visa era produkter innuti product-container -->
   <div id="product-container"></div>
 
@@ -31,7 +35,7 @@
 	<!-- alert, eller sida som säger produkterna är på väg -->
   <button id="checkout">Gå till kassan</button>
 	
-  <script src="main.js"></script>
+  <script src="filter.js"></script>
 </body>
 
 </html>
