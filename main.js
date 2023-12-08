@@ -19,6 +19,7 @@ let mapResult = products.map(product => {
     return `
     <h3> ${product.name} </h3>
     <p>  ${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0} )} </p>
+    <button>Lägg till i varukorg</button>
     `
 })
 
