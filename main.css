@@ -25,12 +25,19 @@ body {
 /* Main */
 h2, #category-div {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center; 
 }
 #product-container, #checkout, #cart {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    padding: 3em;
+}
+
+.cart-section{
+    border: solid, gray 0.4em;
 }
 
 #product-container p {
@@ -46,18 +53,28 @@ h2, #category-div {
 }
 
 /* Footer */
-footer {
+footer{
     background-color: #6328E0;
-    display: flex;
+    display: flex; 
     justify-content: center;
-    align-items: center;
+    align-items: center; 
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 3rem;
+    padding: 0.3em;
 }
 
-footer a {
-    padding: 1rem;
+img{
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+
+.category-div{
+   border: red 3px solid;
+}
+
+#main-section{
+    height: 90vh;
 }
