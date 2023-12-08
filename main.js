@@ -19,8 +19,18 @@ let mapResult = products.map(product => {
     return `
     <h3> ${product.name} </h3>
     <p>  ${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0} )} </p>
-    <button>Lägg till i varukorg</button>
+    <button class="addToWares">Lägg till i varukorg</button>
     `
 })
 
 let dataDiv = document.getElementById("product-container").innerHTML = mapResult.join("");
+
+var addToWares = document.querySelectorAll('.addToWares');
+
+addToWares.forEach(function(item, index) {
+    item.addEventListener('click', function() {
+        cart.push(products[index]);
+        console.log(cart);
+    });
+});
+
