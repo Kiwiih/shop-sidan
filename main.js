@@ -25,12 +25,28 @@ let mapResult = products.map(product => {
 
 let dataDiv = document.getElementById("product-container").innerHTML = mapResult.join("");
 
-var addToWares = document.querySelectorAll('.addToWares');
+let addToWares = document.querySelectorAll('.addToWares');
+let cartContainer = document.getElementById('cart');
 
 addToWares.forEach(function(item, index) {
     item.addEventListener('click', function() {
         cart.push(products[index]);
         console.log(cart);
+
+        // Update cart rendering
+        let cartRender = cart.map(product => {
+            return `
+            <h3>${product.name}</h3>
+            <p>${product.price.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})}</p>
+            `;
+        });
+
+        cartContainer.innerHTML = cartRender.join('');
+
+        // Update total price in the cart container
+        let totalPrice = cart.reduce((total, currentProduct) => {
+            return total + currentProduct.price;
+        }, 0);
+        cartContainer.innerHTML += `<p>Total: ${totalPrice.toLocaleString("sv-SE", {style: "currency", currency: "SEK", minimumFractionDigits: 0})}</p>`;
     });
 });
-
