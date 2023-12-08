@@ -3,28 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Enkel Webbshop</title>
+  <link rel="shortcut icon" href="#">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="main.css">
+  <title>Välkommen Till Vår Webbshop!</title>
 </head>
 
 <body>
+  <header>
+    <nav id="main-nav">
   <h1>Välkommen till vår Webbshop!</h1>
-
-	<h2>Våra produkter</h2>
-  <select name="product" id="product">
-    <option value="t-shirt">kläder</option>
-    <option value="hörlurar">elektronik</option>
-    <option value="keps">kläder</option>
-    <option value="mobiltelefon">elektronik</option>
+    </nav>
+  </header>
+  <main id="main-section">
+	  <h2>Våra produkter</h2>
+  <div id="category-div">
+  <label id="category-id" for="kategorier">Filtrera på kategori:</label>
+  <select name="produkt" id="product">
+    <option value="keps">Accessoarer</option>
+    <option value="hörlurar">Elektronik</option>
+    <option value="t-shirt">Kläder</option>
+    <option value="mobiltelefon">Tillbehör</option>
   </select>
-
-  <!-- Elementet där produktinformationen kommer att visas -->
-  <div id="productInfo">
-    <h3>Produktinformation</h3>
-    <p id="productName">Namn: </p>
-    <p id="productCategory">Kategori: </p>
-    <p id="productPrice">Pris: </p>
-  </div>
+  <p id="selectedValue">Valt alternativ: </p>
 	<!-- Visa era produkter innuti product-container -->
   <div id="product-container"></div>
 
@@ -35,7 +39,7 @@
 	<!-- alert, eller sida som säger produkterna är på väg -->
   <button id="checkout">Gå till kassan</button>
 	
-  <script src="filter.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>
